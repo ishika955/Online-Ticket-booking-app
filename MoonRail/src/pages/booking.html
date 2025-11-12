@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail: Search Results & Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+    
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+            #main-content-wrapper {
+            flex-grow: 1;
+            padding-top: 7rem; 
+            padding-bottom: 2rem; 
+        }
+        
+       
+        .result-tab-button {
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            padding-bottom: 0.5rem;
+            transition: border-bottom-width 0.2s;
+        }
+        
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.75); 
+            z-index: 1000; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="fixed top-0 w-full bg-gray-900 text-white z-50 shadow-lg">
+        <div class="flex justify-between items-center px-6 py-1 text-xs bg-purple-900">
+            <p><i class="fas fa-phone mr-1"></i> +91-8685986823</p>
+            <div class="flex space-x-3 text-sm">
+                 <i class="fab fa-facebook"></i>
+                <a href="#"><i class="fab fa-twitter hover:text-purple-400"></i></a>
+                <a href="#"><i class="fab fa-instagram hover:text-purple-400"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in hover:text-purple-400"></i></a>
+            </div>
+            <i></i>
+        </div>
+        
+        <nav class="flex justify-between items-center px-6 py-3">
+            <a href="index.html" class="text-2xl font-bold flex items-center">
+                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+                &nbsp;<span class="text-2xl font-bold text-white">MoonRail</span>
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-purple-400 transition-colors">Home</a>
+                <a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a>
+                <a href="offers.html" class="hover:text-purple-400 transition-colors">Offers</a>
+                <a href="news.html" class="hover:text-purple-400 transition-colors">News</a>
+                <a href="contacts.html" class="hover:text-purple-400 transition-colors">Contact</a>
+            </div>
+            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                <i class="fas fa-user-circle mr-1"></i> My Account
+            </button>
+        </nav>
+    </header>
+
+    <div id="main-content-wrapper" class="container mx-auto px-4">
+        
+        <div class="bg-white rounded-xl shadow-xl w-full p-6 my-4 border-t-4 border-purple-500">
+            <h2 id="results-header-text" class="text-2xl font-bold text-purple-800">
+                Search Results: Origin to Destination 
+            </h2>
+            <p class="text-sm text-gray-500 mt-1">Found 15+ journeys for your trip.</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-xl p-4 mb-4">
+            <div class="flex border-b border-gray-300 px-2 pt-2">
+                <button class="result-tab-button text-purple-700 font-semibold mx-4" data-tab-content="flights-results" style="border-bottom-width: 2px;">
+                    <i class="fas fa-plane mr-1"></i> Flights
+                </button>
+                <button class="result-tab-button text-gray-500 font-semibold mx-4" data-tab-content="buses-results">
+                    <i class="fas fa-bus mr-1"></i> Buses
+                </button>
+                <button class="result-tab-button text-gray-500 font-semibold mx-4" data-tab-content="trains-results">
+                    <i class="fas fa-train mr-1"></i> Trains
+                </button>
+                <button class="result-tab-button text-gray-500 font-semibold mx-4" data-tab-content="cab-results">
+                    <i class="fas fa-taxi mr-1"></i> Cabs
+                </button>
+            </div>
+        </div>
+
+        <div id="results-content-area" class="space-y-4">
+            <div id="flights-results" class="result-tab-content space-y-4">
+                </div>
+            <div id="buses-results" class="result-tab-content space-y-4 hidden">
+                </div>
+            <div id="trains-results" class="result-tab-content space-y-4 hidden">
+                </div>
+            <div id="cab-results" class="result-tab-content space-y-4 hidden">
+                </div>
+        </div>
+        
+    </div>
+
+    <div id="booking-modal" class="modal-overlay fixed inset-0 z-[1010] flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+            
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-purple-600 rounded-t-xl">
+                <h3 class="text-xl font-bold text-white">Confirm Your Trip</h3>
+                <button onclick="closeModal('booking-modal');" class="text-white hover:text-gray-200 transition duration-150 text-xl" title="Back to Results">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+
+            <div id="booking-form-content" class="p-4">
+                </div>
+            
+        </div>
+    </div>
+
+
+    <div id="alert-modal" class="modal-overlay fixed inset-0 z-[1020] flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-sm p-6 text-center">
+            <h4 id="alert-title" class="text-xl font-bold mb-3 text-red-600">Alert Title</h4>
+            <p id="alert-message" class="text-gray-600 mb-6">Alert message content.</p>
+            <button onclick="closeModal('alert-modal')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition duration-150">
+                OK
+            </button>
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-800 text-white pt-10">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8">
+                
+                <div class="footer-section space-y-4">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">About MoonRail</h3>
+                    <p class="text-gray-400 text-sm">MoonRail is your trusted partner for seamless travel bookings. We offer a wide range of services including flights, trains, buses, cabs, and hotels to make your journey comfortable and convenient.</p>
+                    <div class="social-icons flex space-x-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-facebook-f" aria-label="Facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-twitter" aria-label="Twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150"><i class="fab fa-linkedin-in" aria-label="LinkedIn"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition duration-150">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">Offers</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">News</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-150">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section space-y-2">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Contact Us</h3>
+                    <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i>support@moonrail.com</p>
+                    <p class="text-gray-400"><i class="fas fa-phone mr-2"></i> Phone: +91-8685986823</p>
+                    <p class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i>Chitkara University, Rajpura, Punjab, India</p>
+                </div>
+                
+                <div class="footer-section space-y-4">
+                    <h3 class="text-xl font-bold text-purple-400 mb-4">Trust & Security</h3>
+                    <p class="text-gray-400 text-sm">Your payments are protected by industry-leading security standards. Book with confidence!</p>
+                    <div class="flex flex-wrap space-x-3 text-2xl text-green-500">
+                        <i class="fas fa-lock" title="SSL Secured"></i>
+                        <i class="fas fa-shield-alt" title="Payment Protection"></i>
+                        <i class="fab fa-cc-visa text-blue-500" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard text-red-500" title="Mastercard"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom bg-gray-900 py-4 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 MoonRail. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+        </div>
+    </footer>
+
+   
+    <script>
+     const bookingModal = document.getElementById('booking-modal');
+    const alertModal = document.getElementById('alert-modal'); // Added missing reference
+    const mainContentWrapper = document.getElementById('main-content-wrapper'); // NEW: Reference the main content container
+    const resultsHeaderText = document.getElementById('results-header-text'); // NEW: Reference the results title element
+    const resultsContentArea = document.getElementById('results-content-area');
+
+    let ORIGIN = '';
+    let DESTINATION = '';
+    let SEARCH_DATE = ''; 
+    let GUESTS = 0;
+    let mockResults = {}; 
+
+    const CURRENCY_SYMBOL = '₹';
+
+    const PUNJAB_CITIES = [
+        'Amritsar', 'Ludhiana', 'Jalandhar', 'Patiala', 'Chandigarh', 
+        'Bathinda', 'Pathankot', 'Hoshiarpur', 'Moga', 'Sangrur', 'Rajpura'
+    ];
+
+    const SHORT_ROUTE_KEYWORDS = ['Moga', 'Hoshiarpur', 'Rajpura', 'Patiala', 'Jalandhar']; 
+
+    function isShortDistanceRoute(origin, destination) {
+        const majorHubs = ['Amritsar', 'Ludhiana', 'Chandigarh', 'Bathinda', 'Pathankot'];
+        const normOrigin = origin.trim();
+        const normDestination = destination.trim();
+        
+        if (SHORT_ROUTE_KEYWORDS.includes(normOrigin) && SHORT_ROUTE_KEYWORDS.includes(normDestination)) {
+            return true; 
+        }
+        const shortHops = ['Amritsar-Jalandhar', 'Jalandhar-Ludhiana', 'Chandigarh-Patiala', 'Rajpura-Patiala', 'Rajpura-Ludhiana', 'Moga-Ludhiana'];
+        const route = `${normOrigin}-${normDestination}`;
+        const reverseRoute = `${normDestination}-${normOrigin}`;
+        
+        if (shortHops.includes(route) || shortHops.includes(reverseRoute)) {
+            return true; 
+        }
+        
+        if (majorHubs.includes(normOrigin) && majorHubs.includes(normDestination)) {
+            return false; 
+        }
+        
+        if (!PUNJAB_CITIES.includes(normOrigin) || !PUNJAB_CITIES.includes(normDestination)) {
+            return false; 
+        }
+        
+        return true;
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+
+    function showAlert(title, message, isError = true) {
+        if (!alertModal) return; 
+
+        document.getElementById('alert-title').textContent = title;
+        document.getElementById('alert-title').classList.toggle('text-red-600', isError);
+        document.getElementById('alert-title').classList.toggle('text-blue-600', !isError);
+        
+        const okButton = document.querySelector('#alert-modal button:last-child');
+        if (okButton) {
+            okButton.classList.toggle('bg-red-600', isError);
+            okButton.classList.toggle('hover:bg-red-700', isError);
+            okButton.classList.toggle('bg-blue-600', !isError);
+            okButton.classList.toggle('hover:bg-blue-700', !isError);
+        }
+
+        document.getElementById('alert-message').textContent = message;
+        alertModal.classList.remove('hidden'); 
+    }
+
+
+
+    const generateMockData = (type, currentOrigin, currentDestination) => {
+        const data = [];
+        const count = 12; 
+        const isShortRoute = isShortDistanceRoute(currentOrigin, currentDestination);
+
+        const AIRLINES = ['Air India', 'IndiGo', 'Vistara', 'SpiceJet'];
+        const BUS_OPERATORS = ['PRTC', 'HRTC', 'Zingbus', 'New Deep Bus', 'Fauji Bus'];
+        const TRAIN_NAMES = ['Swaraj Express', 'Amritsar Shatabdi', 'Paschim Express', 'Golden Temple Mail', 'Jalianwala Bagh Exp'];
+        const CAB_SERVICES = ['GoCar Rentals', 'Local Taxi', 'Prime Cab', 'Punjab Cab'];
+
+        if (type === 'flights' && isShortRoute) {
+            return []; 
+        }
+
+        for (let i = 1; i <= count; i++) {
+            const id = crypto.randomUUID();
+            
+            let basePrice;
+            if (isShortRoute) {
+                basePrice = (type === 'flights') ? 0 : 
+                            (type === 'cab') ? 2000 : 
+                            600; 
+            } else if (type === 'flights') {
+                basePrice = 4000; 
+            } else {
+                basePrice = 1200; 
+            }
+            
+            const price = Math.floor(Math.random() * basePrice) + (basePrice / 2); 
+            let item = { id, price: Math.max(150, Math.round(price / 10) * 10), type }; 
+
+            if (type === 'flights') {
+                const duration = `${Math.floor(Math.random() * 4) + 1}h ${Math.floor(Math.random() * 59)}m`;
+                item = { ...item, 
+                    name: AIRLINES[i % AIRLINES.length], 
+                    departure: `${10 + (i % 8)}:${(i * 5) % 60 < 10 ? '0' : ''}${(i * 5) % 60} ${i % 2 === 0 ? 'AM' : 'PM'}`,
+                    duration,
+                    stops: i % 4 === 0 ? '1 Stop' : 'Non-stop'
+                };
+            } else if (type === 'buses') {
+                const classes = ['Volvo AC Sleeper', 'Ordinary Seater', 'AC Seater', 'Lux Bus'];
+                item = { ...item, 
+                    name: BUS_OPERATORS[i % BUS_OPERATORS.length],
+                    operator: classes[i % classes.length],
+                    departure: `${6 + (i % 8)}:${(i * 10) % 60 < 10 ? '0' : ''}${(i * 10) % 60} ${i % 3 === 0 ? 'PM' : 'AM'}`,
+                    seats: Math.floor(Math.random() * 20) + 5,
+                    class: i % 4 === 0 ? 'Sleeper' : 'Seater'
+                };
+            } else if (type === 'trains') {
+                const classes = ['First AC', 'Second AC', 'Sleeper', 'General'];
+                item = { ...item, 
+                    name: TRAIN_NAMES[i % TRAIN_NAMES.length],
+                    number: `TRN${12000 + i}`,
+                    departure: `${8 + (i % 5)}:${(i * 7) % 60 < 10 ? '0' : ''}${(i * 7) % 60} PM`,
+                    class: classes[i % classes.length],
+                };
+            } else if (type === 'cab') {
+                const cars = ['Hatchback', 'Sedan (AC)', 'SUV (XL)'];
+                item = { ...item, 
+                    name: CAB_SERVICES[i % CAB_SERVICES.length],
+                    carType: cars[i % cars.length],
+                    rate: `${CURRENCY_SYMBOL}${Math.floor(Math.random() * 10) + 18}/km`, 
+                    driver: `Driver ${i}`,
+                    rating: (Math.random() * 1.5 + 3.5).toFixed(1)
+                };
+            }
+            data.push(item);
+        }
+        return data;
+    };
+
+
+    function generateResultsHTML(type, data) {
+        let icon;
+        let detailFields;
+        
+        if (data.length === 0) {
+            let note = '';
+            if (type === 'flights' && isShortDistanceRoute(ORIGIN, DESTINATION)) {
+                note = ` Flights are generally not available for the short route between ${ORIGIN} and ${DESTINATION}.`;
+            }
+
+            return `
+                <div class="p-6 bg-red-100 border border-red-400 text-red-700 rounded-lg shadow-inner text-center">
+                    <i class="fas fa-exclamation-triangle text-2xl mb-2"></i>
+                    <p class="font-bold">No ${type.toUpperCase()} results found.</p>
+                    <p class="text-sm">Please try Bus, Train, or Cab.${note}</p>
+                </div>
+            `;
+        }
+
+        else if (type === 'flights') {
+            icon = '<i class="fas fa-plane text-blue-500"></i>';
+            detailFields = (item) => `
+                <div class="flex justify-between w-full md:w-3/4">
+                    <div class="flex flex-col items-start space-y-1">
+                        <p class="font-bold text-xl text-gray-900">${item.departure}</p> <p class="text-xs text-gray-500">${ORIGIN}</p>
+                    </div>
+                    <div class="text-sm text-gray-500 text-center flex flex-col items-center">
+                        <i class="fas fa-clock text-xs"></i> ${item.duration}
+                        <p class="text-xs text-indigo-500">${item.stops}</p>
+                    </div>
+                    <div class="flex flex-col items-end space-y-1">
+                        <p class="font-semibold text-lg text-gray-700">${item.name}</p>
+                        <p class="text-xs text-gray-500">${DESTINATION}</p>
+                    </div> 
+                </div>
+            `;
+        }
+        else if (type === 'buses') {
+            icon = '<i class="fas fa-bus text-green-500"></i>';
+            detailFields = (item) => `
+                <p class="font-bold text-lg">${item.name}</p>
+                <p class="text-gray-600">
+                    <span class="font-semibold">${item.departure}</span> / ${item.operator}
+                </p>
+                <p class="text-sm text-yellow-600">${item.class} (${item.seats} seats left)</p>
+            `;
+        } else if (type === 'trains') {
+            icon = '<i class="fas fa-train text-red-500"></i>';
+            detailFields = (item) => `
+                <p class="font-bold text-lg">${item.name}</p> 
+                <p class="text-gray-600">
+                    <span class="font-semibold">${item.departure}</span> 
+                    <span class="text-sm text-gray-500">(${item.number})</span>
+                </p>
+                <p class="text-sm text-indigo-600">${item.class}</p>
+            `;
+        } else if (type === 'cab') {
+            icon = '<i class="fas fa-taxi text-yellow-500"></i>';
+            detailFields = (item) => `
+                <p class="font-bold">${item.name}</p>
+                <p class="text-gray-600">${item.carType} / ${item.rate}</p>
+                <p class="text-sm text-yellow-500"><i class="fas fa-star"></i> ${item.rating} (${item.driver})</p>
+            `;
+        }
+        
+        const html = data.map(item => {
+            const detailString = JSON.stringify({ 
+                service: type, 
+                id: item.id,
+                description: type === 'flights' ? `${item.name} - ${item.stops}` : 
+                            type === 'buses' ? `${item.name} (${item.operator})` :
+                            type === 'trains' ? `${item.name} (${item.number})` :
+                            `${item.name} (${item.carType})`
+            });
+
+            return `
+                <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200 border-l-4 border-purple-500">
+                    <div class="flex items-center space-x-4 flex-grow">
+                        <div class="text-3xl">${icon}</div>
+                        <div class="flex-1 min-w-0">
+                            ${detailFields(item)}
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end space-y-2 ml-4">
+                        <p class="text-2xl font-extrabold text-purple-700">${CURRENCY_SYMBOL}${item.price}</p>
+                        <button 
+                            class="book-now-btn px-4 py-2 text-sm text-white font-semibold bg-purple-600 rounded-full hover:bg-purple-700 transition duration-150"
+                            data-service-type="${type}"
+                            data-details='${detailString}'
+                            data-price="${item.price}"
+                        >
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        return html;
+    }
+
+     function openResultsModal() {
+        
+        mockResults = {
+            flights: generateMockData('flights', ORIGIN, DESTINATION),
+            buses: generateMockData('buses', ORIGIN, DESTINATION),
+            trains: generateMockData('trains', ORIGIN, DESTINATION),
+            cab: generateMockData('cab', ORIGIN, DESTINATION)
+        };
+        
+           if (resultsHeaderText) {
+            resultsHeaderText.innerHTML = `Search Results for ${SEARCH_DATE}: ${ORIGIN} <i class="fas fa-arrow-right text-purple-500 text-base mx-2"></i> ${DESTINATION}`;
+        }
+
+     
+        document.getElementById('flights-results').innerHTML = generateResultsHTML('flights', mockResults.flights);
+        document.getElementById('buses-results').innerHTML = generateResultsHTML('buses', mockResults.buses);
+        document.getElementById('trains-results').innerHTML = generateResultsHTML('trains', mockResults.trains);
+        document.getElementById('cab-results').innerHTML = generateResultsHTML('cab', mockResults.cab);
+
+
+        const flightsTab = document.querySelector('[data-tab-content="flights-results"]');
+        const busesTab = document.querySelector('[data-tab-content="buses-results"]');
+
+        const defaultTab = mockResults.flights.length > 0 ? flightsTab : busesTab;
+            
+        if (defaultTab) {
+            switchResultTab(defaultTab);
+        }
+    }
+
+
+
+    function checkFormValidity() {
+        const nameInput = document.getElementById('passenger-name');
+        const emailInput = document.getElementById('passenger-email');
+        const phoneInput = document.getElementById('passenger-phone');
+        
+        if (!nameInput.value.trim()) {
+            showAlert("Validation Error", "Please enter your Full Name.");
+            nameInput.focus();
+            return false;
+        }
+        
+        if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            showAlert("Validation Error", "Please enter a valid Email Address.");
+            emailInput.focus();
+            return false;
+        }
+
+        if (!phoneInput.value.trim() || !/^\d{10}$/.test(phoneInput.value.trim())) {
+            showAlert("Validation Error", "Please enter a valid 10-digit Phone Number.");
+            phoneInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    function openBookingForm(serviceType, detailsString, price) {
+           
+        const details = JSON.parse(detailsString);
+        const formattedPrice = parseFloat(price).toFixed(2);
+        
+        const formHtml = `
+            <div class="bg-white p-4 space-y-4">
+                <div class="p-4 bg-purple-100 rounded-lg border-l-4 border-purple-500">
+                    <h3 class="text-xl font-semibold text-purple-800">${details.service.toUpperCase()} Booking</h3>
+                    <p class="text-gray-700 mt-1">${details.description}</p>
+                    <p class="text-3xl font-bold text-purple-900 mt-2">Total: ${CURRENCY_SYMBOL}${formattedPrice}</p>
+                </div>
+
+                <h4 class="font-semibold text-gray-700 border-b pb-2">Passenger Details (${GUESTS} Guest${GUESTS > 1 ? 's' : ''})</h4>
+                
+                <input id="passenger-name" type="text" placeholder="Full Name (as per ID)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
+                <input id="passenger-email" type="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
+                <input id="passenger-phone" type="tel" placeholder="Phone Number (10 digits)" maxlength="10" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900" required>
+
+                <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 text-gray-900">
+                    <option value="">Select Seat/Preference</option>
+                    <option value="window">Window Seat</option>
+                    <option value="aisle">Aisle Seat</option>
+                    <option value="front">Front Preference</option>
+                </select>
+
+                <button id="pay-now-button" type="button" class="w-full mt-6 py-3 text-white font-bold text-lg bg-green-600 hover:bg-green-700 rounded-lg shadow-xl transition duration-200">
+                    Pay Now (${CURRENCY_SYMBOL}${formattedPrice})
+                </button>
+                
+                <p id="payment-message" class="text-center text-sm text-gray-500 mt-3 hidden">Processing payment...</p>
+            </div>
+        `;
+
+        document.getElementById('booking-form-content').innerHTML = formHtml;
+        
+       
+        document.getElementById('pay-now-button').addEventListener('click', handlePayNow);
+
+        bookingModal.classList.remove('hidden');
+    }
+
+    function handlePayNow() {
+        if (!checkFormValidity()) {
+            return; 
+        }
+        
+        const payButton = document.getElementById('pay-now-button');
+        const message = document.getElementById('payment-message');
+       
+        const initialPriceMatch = payButton.textContent.match(/\((.*?)\)/);
+        const initialPrice = initialPriceMatch ? initialPriceMatch[1] : 'the total amount';
+        
+        payButton.disabled = true;
+        payButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+        payButton.classList.add('bg-orange-500'); 
+        payButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Initializing Payment...';
+        message.textContent = 'Verifying passenger details and ticket availability...';
+        message.classList.remove('hidden', 'text-blue-600', 'font-bold');
+        message.classList.add('text-gray-500');
+
+        setTimeout(() => {
+            payButton.classList.remove('bg-orange-500');
+            payButton.classList.add('bg-indigo-500');
+            payButton.innerHTML = '<i class="fas fa-credit-card mr-2"></i> Processing Transaction...';
+            message.textContent = 'Secure transaction request sent to gateway. Do not close this window.';
+
+            setTimeout(() => {
+                payButton.classList.remove('bg-indigo-500');
+                payButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                payButton.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Booking Confirmed!';
+                
+                message.textContent = `Payment of ${initialPrice} successful! Your tickets have been confirmed and emailed.`;
+                message.classList.remove('text-gray-500');
+                message.classList.add('text-blue-600', 'font-bold');
+                
+               
+                const newPayButton = document.getElementById('pay-now-button');
+                if(newPayButton) newPayButton.removeEventListener('click', handlePayNow); 
+                
+            }, 2500);
+            
+        }, 2000);
+    }
+
+    function switchResultTab(targetTab) {
+        document.querySelectorAll('.result-tab-button').forEach(btn => {
+            btn.classList.remove('text-purple-700', 'border-purple-700');
+            btn.classList.add('text-gray-500');
+            btn.style.borderBottomWidth = '0px';
+        });
+
+        targetTab.classList.add('text-purple-700');
+        targetTab.style.borderBottomWidth = '2px'; 
+        targetTab.classList.remove('text-gray-500');
+        
+        document.querySelectorAll('.result-tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+
+        const targetId = targetTab.getAttribute('data-tab-content');
+        document.getElementById(targetId).classList.remove('hidden');
+    }
+
+
+      document.querySelectorAll('.result-tab-button').forEach(button => {
+        button.addEventListener('click', (e) => switchResultTab(e.currentTarget));
+    });
+
+        resultsContentArea.addEventListener('click', (e) => {
+        const bookNowBtn = e.target.closest('.book-now-btn');
+        if (bookNowBtn) {
+            const serviceType = bookNowBtn.getAttribute('data-service-type');
+            const details = bookNowBtn.getAttribute('data-details');
+            const price = bookNowBtn.getAttribute('data-price');
+            openBookingForm(serviceType, details, price);
+        }
+    });
+
+   
+    document.addEventListener('DOMContentLoaded', () => {
+     
+        const urlParams = new URLSearchParams(window.location.search);
+        ORIGIN = urlParams.get('origin');
+        DESTINATION = urlParams.get('destination');
+        SEARCH_DATE = urlParams.get('date');
+        GUESTS = parseInt(urlParams.get('guests'));
+
+     
+        if (ORIGIN && DESTINATION && SEARCH_DATE && !isNaN(GUESTS) && GUESTS > 0) {
+            
+           
+            openResultsModal();
+            
+            if (mainContentWrapper) {
+                mainContentWrapper.style.display = 'block'; 
+            }
+            
+        } else {
+                      if (mainContentWrapper) {
+                mainContentWrapper.style.display = 'none';
+            }
+            
+            showAlert("Error", "No search criteria found. Redirecting back to the search page...", true);
+            setTimeout(() => {
+                window.location.href = 'index.html'; 
+            }, 3000);
+        }
+    });
+</script>
+</body>
+</html>

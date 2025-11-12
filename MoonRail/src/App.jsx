@@ -1,19 +1,19 @@
-import React from 'react'
-import { BrowserRouter as Router,Route,Routes } from 'react-router-dom'
-import Topbar from './components/Topbar'
-import Navbar from './components/Navbar'
-import Homes from './pages/Homes'
-import Offers from './pages/Offers';
+// src/App.jsx
+
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
+import Homes from './pages/Homes'; 
+import './App.css'; 
+
 function App() {
   return (
-   <Router>
-    <Topbar />
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<Homes />} />
-      <Route path='/offers' element={<Offers />}/>
-    </Routes> 
-   </Router>
-  )
+    // FIX: Wrap the entire application content that uses <Link> with BrowserRouter
+    <BrowserRouter> 
+      <div className="App">
+        <Homes />
+      </div>
+    </BrowserRouter>
+  );
 }
-export default App
+
+export default App;

@@ -1,0 +1,170 @@
+/* ================================
+  parallax2.css
+  (Refined from best-packages.css)
+================================ */
+
+/* Base section styling */
+.parallax2 {
+  --card-max: 960px;
+  position: relative;
+  /* Use a reasonable height, ensuring it doesn't default to 100vh anywhere */
+  height: var(--parallax-h, 55vh); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Keep background-attachment: scroll if you want content to move with the page */
+  background-attachment: scroll; 
+}
+
+/* Subtle overlay tint */
+.parallax2 .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,8,50,0.28), rgba(10,8,40,0.28));
+  z-index: 1;
+}
+
+/* Ensure content stays above overlay */
+.parallax2 > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Card container */
+.parallax2-card {
+  width: min(86%, var(--card-max));
+  max-width: var(--card-max);
+  background: #fff;
+  padding: 44px 48px;
+  border-radius: 8px;
+  box-shadow: 0 22px 48px rgba(10,20,40,0.10);
+  text-align: center;
+  color: #111;
+  margin: 0 auto;
+  /* If the card content causes the repetition, reduce this fixed height */
+  height: 600px; 
+}
+
+/* Descriptive text */
+.parallax2-card .lead {
+  color: #6b7280;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin: 20px auto 26px;
+  max-width: 780px;
+}
+
+/* Button styling */
+.btn.book-now {
+  background: linear-gradient(90deg, #ff9f43 0%, #a463ff 100%);
+  color: #fff;
+  border: none;
+  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+  padding: 20px 60px;
+  border-radius: 40px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  cursor: pointer;
+  box-shadow: 0 10px 32px rgba(164,99,255,0.14);
+  transition: all 0.3s ease;
+}
+.btn.book-now:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 40px rgba(164,99,255,0.2);
+}
+
+/* ===== Arrows ===== */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  border: 3px solid rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  z-index: 3;
+  cursor: pointer;
+  transition: transform .15s ease, background .12s ease, box-shadow .12s ease;
+  box-shadow: 0 8px 24px rgba(10,10,20,0.12);
+}
+.arrow span {
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* Positioning */
+.arrow.left { left: 36px; }
+.arrow.right { right: 36px; }
+
+/* Hover feedback */
+.arrow:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 16px 40px rgba(10,10,20,0.16);
+}
+.arrow:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .parallax2 {
+    /* If the page repeat is still happening, try changing height: auto; here */
+    height: auto; 
+    padding: 40px 12px;
+    background-attachment: scroll;
+  }
+  .parallax2-card {
+    padding: 28px 18px;
+    width: 94%;
+    max-width: 720px;
+  }
+  .parallax2-card .lead {
+    max-width: 100%;
+    font-size: .98rem;
+  }
+  .arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    left: 12px;
+    right: 12px;
+    border-width: 2px;
+  }
+  .arrow span { font-size: 20px; }
+}
+
+/* ==============================================
+  DELETED: Conflicting Checkbox/Radio Slider Logic 
+  (This was the likely cause of the page repetition)
+  ==============================================
+*/
+
+/* ===== Four-card grid section ===== */
+.fourcards-container {
+  /* NOTE: This section probably belongs in Parallax3.css */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .fourcards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}

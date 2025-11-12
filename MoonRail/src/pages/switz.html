@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail: Lakshadweep Coral Paradise Package</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .cta-gradient {
+            /* Vibrant Tropical Gradient */
+            background-image: linear-gradient(to right, #f97316, #8b5cf6); /* Orange to Purple */
+            transition: all 0.3s ease;
+        }
+        .cta-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b5cf6; /* Purple line */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            height: 16px;
+            width: 16px;
+            background-color: #f97316; /* Orange dot */
+            border-radius: 50%;
+            z-index: 10;
+        }
+        /* Background image URL for Lakshadweep - clear blue lagoon */
+        #hero-section { 
+            background-image: url('../img/switzerland.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER: Contains Logo and Back Button -->
+    <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo and Brand Name -->
+            <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+                <span class="text-2xl font-bold text-white">MoonRail</span>
+            </div>
+            
+            <!-- Back Button with correct index.html#1 link -->
+            <a href="index.html#4" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Packages
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION: High-Impact Destination Feature -->
+    <section id="hero-section" class="h-[60vh] md:h-[80vh] flex items-center justify-center">
+        <div class="text-center bg-black bg-opacity-50 p-10 rounded-xl max-w-4xl mx-auto backdrop-blur-sm">
+            <p class="text-xl font-semibold text-purple-400 mb-2">MAR 15TH - MAR 21ST | 7 DAYS / 6 NIGHTS</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-tight leading-tight">
+                Lakshadweep: The <span class="text-orange-400">Coral</span> Paradise
+            </h1>
+            <p class="text-xl mt-4 max-w-2xl mx-auto text-gray-200">
+                Discover the untouched beauty of India's hidden gem, exploring the turquoise lagoons and vibrant marine life of the coral islands.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. KEY HIGHLIGHTS: Value Proposition -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">Package Includes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-plane-departure text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Return Flights</p>
+                    <p class="text-sm text-gray-400">Ex-Kochi to Agatti</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-water text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Inter-Island Transfers</p>
+                    <p class="text-sm text-gray-400">Ferry & Boat Transport</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-fish-fins text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Water Activities</p>
+                    <p class="text-sm text-gray-400">Snorkeling & Glass-Bottom Boat</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-concierge-bell text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Full Board Meals</p>
+                    <p class="text-sm text-gray-400">Breakfast, Lunch & Dinner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ITINERARY TIMELINE -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Your 7-Day Coral Journey</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-6 sm:pl-10">
+
+                    <!-- Day 1 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 1: Arrival at Agatti & Lagoon View</h3>
+                        <p class="text-gray-400 mt-2">Arrive at Agatti Aerodrome (AGX). Private transfer to your beach resort. Spend the afternoon relaxing by the stunning **Agatti Lagoon**.</p>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 2: Transfer to Kavaratti & Capital Tour</h3>
+                        <p class="text-gray-400 mt-2">Morning ferry transfer to **Kavaratti**, the capital island. Visit the Marine Aquarium and the local light house for panoramic views.</p>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 3: Kavaratti Scuba & Snorkeling</h3>
+                        <p class="text-gray-400 mt-2">Full day dedicated to water activities. Enjoy introductory **Scuba Diving** or snorkeling among the vibrant coral reefs and marine life.</p>
+                    </div>
+                    <!-- Day 4 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 4: Transfer to Kalpeni & Thriving Reefs</h3>
+                        <p class="text-gray-400 mt-2">Morning ferry to **Kalpeni Island**. Check into your hut and explore the vast, shallow lagoon, ideal for sunbathing and swimming.</p>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 5: Pitti Island Kayaking & Water Sports</h3>
+                        <p class="text-gray-400 mt-2">Excursion by boat to the uninhabited Pitti Island, known for its pristine beauty. Enjoy kayaking and other non-motorized **water sports**.</p>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 6: Return to Agatti & Farewell Evening</h3>
+                        <p class="text-gray-400 mt-2">Morning ferry back to Agatti. Enjoy a relaxed afternoon and a special **farewell dinner** on the beach under the stars.</p>
+                    </div>
+                    <!-- Day 7 (No bottom padding/line) -->
+                    <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 7: Departure</h3>
+                        <p class="text-gray-400 mt-2">Enjoy a final view of the turquoise waters before your private transfer takes you to Agatti Aerodrome (AGX) for your flight back to Kochi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BOOKING AND CTA SECTION -->
+    <section class="py-20 bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-6 lg:px-12 text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">Dive into India's Tropical Wonder</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                The March season is the best time for clear waters. Secure your spot now for this exclusive journey to Lakshadweep.
+            </p>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl inline-block">
+                <!-- Price updated for Lakshadweep -->
+                <p class="text-3xl font-bold text-white mb-4">Starting Price: <span class="text-orange-400">₹55,000</span></p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="cta-gradient text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg">
+                        <i class="fas fa-hand-point-right mr-2"></i> BOOK THIS PACKAGE
+                    </a>
+                    <a href="#" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg transition duration-200">
+                        <i class="fas fa-phone-alt mr-2"></i> CALL US
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 MoonRail. All rights reserved. | Professional Travel Curators.</p>
+        </div>
+    </footer>
+</body>
+</html>

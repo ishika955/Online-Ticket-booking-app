@@ -1,0 +1,178 @@
+/* parallax1.css */
+
+/* ===== Parallax Section ===== */
+.parallax {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.parallax::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* background: rgb(236, 235, 235); */
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 1;
+}
+
+.parallax-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  -webkit-text-fill-color: black;
+}
+
+.parallax-content p {
+  font-size: 1.5rem;
+  -webkit-text-fill-color: black;
+}
+
+/* Optional spacing section below parallax */
+.parallax-content2 {
+  position: relative;
+  z-index: 1;
+  height: 80px;
+}
+
+/* ===== Travel Cards Section ===== */
+.travel-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap; /* responsive */
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Background images for each card (FIXED PATHS) */
+.card:nth-child(1) { 
+    background-image: url('../assets/mauritius.jpg'); 
+}
+.card:nth-child(2) { 
+    background-image: url('../assets/greece.png'); 
+}
+.card:nth-child(3) { 
+    background-image: url('../assets/scotland.jpg'); 
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  z-index: 0;
+}
+
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Headings inside cards */
+.travel-cards .card h3 {
+  font-size: 3rem !important;
+  font-weight: 900;
+  margin: 15px 0 8px;
+  line-height: 1.2;
+}
+
+/* Paragraphs inside cards */
+.travel-cards .card p {
+  font-size: 1.2rem !important;
+  font-weight: 400;
+  margin-bottom: 15px;
+  background-color: orange;
+  border-radius: 10px;
+  padding: 5px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Date Tag */
+.date {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 40px;
+  width: 270px;
+}
+
+/* Card Buttons */
+.card .btn {
+  background: linear-gradient(90deg, #ff8008, #e61eb6);
+  border: none;
+  padding: 3px 40px;
+  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+  border-radius: 25px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* ===== Responsive Tweaks ===== */
+@media (max-width: 768px) {
+  .parallax-content h2 {
+    font-size: 2rem;
+  }
+
+  .parallax-content p {
+    font-size: 1rem;
+  }
+
+  .card {
+    width: 90%;
+    height: 400px;
+  }
+
+  .travel-cards .card h3 {
+    font-size: 2rem !important;
+  }
+
+  .travel-cards .card p {
+    width: 70%;
+  }
+}

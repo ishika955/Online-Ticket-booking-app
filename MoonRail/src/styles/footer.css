@@ -1,0 +1,99 @@
+/* Footer Section */
+.footer {
+  background-color: #19192c;
+  color: #fff;
+  text-align: center;
+  /* CHANGE: Reduced top padding from 60px to 40px and bottom padding from 20px to 10px */
+  padding: 40px 0 10px; 
+
+}
+
+.footer-details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px; /* You can reduce this too if you need more height reduction */
+}
+
+.footer-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #d38dff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section li {
+  margin-bottom: 12px;
+  color: #fff; 
+  opacity: 1; 
+  transition: opacity 0.3s ease;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li a {
+  color: #fff; 
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.footer-section ul li a:hover {
+  color: #d38dff;
+  transform: translateX(5px);
+}
+
+.footer-section i {
+  margin-right: 10px;
+  color: #d38dff;
+  width: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  /* Reduced top margin for footer-bottom */
+  margin-top: 30px; 
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(211, 141, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(211, 141, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 141, 255, 0);
+  }
+}

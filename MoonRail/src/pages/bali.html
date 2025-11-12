@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonRail: Bali Island of Gods Package</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .cta-gradient {
+            background-image: linear-gradient(to right, #f97316, #8b5cf6); /* Orange to Purple */
+            transition: all 0.3s ease;
+        }
+        .cta-gradient:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b5cf6; 
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            height: 16px;
+            width: 16px;
+            background-color: #f97316;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        #hero-section { 
+            background-image: url('../img/bali.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER: Contains Logo and Back Button -->
+    <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo and Brand Name -->
+            <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/32x32/ffffff/000000?text=M" alt="MoonRail Logo" class="h-8 w-8 rounded-full bg-white p-1">
+                <span class="text-2xl font-bold text-white">MoonRail</span>
+            </div>
+            
+            <!-- Back Button with correct index.html#1 link -->
+            <a href="index.html#2" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold text-sm">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Packages
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION: High-Impact Destination Feature -->
+    <section id="hero-section" class="h-[60vh] md:h-[80vh] flex items-center justify-center">
+        <div class="text-center bg-black bg-opacity-50 p-10 rounded-xl max-w-4xl mx-auto backdrop-blur-sm">
+            <p class="text-xl font-semibold text-purple-400 mb-2">JAN 10TH - JAN 16TH | 7 DAYS / 6 NIGHTS</p>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-tight leading-tight">
+                Bali: The <span class="text-orange-400">Island</span> of Gods
+            </h1>
+            <p class="text-xl mt-4 max-w-2xl mx-auto text-gray-200">
+                Immerse yourself in spiritual Ubud and vibrant Seminyak, blending wellness, culture, and stunning beaches on this tropical escape.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. KEY HIGHLIGHTS: Value Proposition -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400">Package Includes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-plane-departure text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Return Flights</p>
+                    <p class="text-sm text-gray-400">Ex-Delhi/Mumbai</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-spa text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Luxury Villa Stay</p>
+                    <p class="text-sm text-gray-400">Ubud & Seminyak Resorts</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-leaf text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Daily Meals</p>
+                    <p class="text-sm text-gray-400">Breakfast & Dinner (Indian Options)</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gray-800 shadow-xl">
+                    <i class="fas fa-hand-holding-heart text-4xl text-orange-400 mb-3"></i>
+                    <p class="font-bold text-lg">Wellness & Culture</p>
+                    <p class="text-sm text-gray-400">Yoga Session & Temple Tour</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ITINERARY TIMELINE -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Your 7-Day Island Escape</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-6 sm:pl-10">
+
+                    <!-- Day 1 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 1: Arrival in Denpasar & Transfer to Ubud</h3>
+                        <p class="text-gray-400 mt-2">Arrive at Denpasar Airport (DPS). Private transfer to your secluded villa in the spiritual heart of Bali, **Ubud**. Evening free to relax.</p>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 2: Rice Terraces & Holy Water Temple</h3>
+                        <p class="text-gray-400 mt-2">Morning visit to the stunning **Tegalalang Rice Terraces**. Afternoon: Experience a purification ritual at the sacred **Tirta Empul Temple**.</p>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 3: Sunrise Walk & Monkey Forest</h3>
+                        <p class="text-gray-400 mt-2">Wake up early for a rejuvenating walk along the **Campuhan Ridge**. Later, spend time observing the playful residents of the Ubud Monkey Forest.</p>
+                    </div>
+                    <!-- Day 4 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 4: Coast Transfer & Tanah Lot Sunset</h3>
+                        <p class="text-gray-400 mt-2">Morning transfer from Ubud to the chic beachfront area of **Seminyak**. In the evening, witness a spectacular sunset over the ocean temple of **Tanah Lot**.</p>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 5: Beach Bliss & Cliffside Temple</h3>
+                        <p class="text-gray-400 mt-2">Explore the beautiful southern beaches, including Padang Padang or Nusa Dua. Finish the day with a visit to the cliff-top **Uluwatu Temple**.</p>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="timeline-item pb-12 relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-purple-400">Day 6: Seminyak Leisure & Shopping</h3>
+                        <p class="text-gray-400 mt-2">A full day at leisure. Enjoy your Seminyak resort pool, indulge in a Balinese spa treatment, or explore the area's upscale boutiques and cafes.</p>
+                    </div>
+                    <!-- Day 7 (No bottom padding/line) -->
+                    <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-2xl font-bold text-orange-400">Day 7: Departure</h3>
+                        <p class="text-gray-400 mt-2">Enjoy a final breakfast overlooking the pool before your private transfer takes you to Denpasar International Airport (DPS) for your international departure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BOOKING AND CTA SECTION -->
+    <section class="py-20 bg-gray-900 border-t border-gray-700">
+        <div class="container mx-auto px-6 lg:px-12 text-center">
+            <h2 class="text-4xl font-extrabold mb-4 text-white">Find Your Serenity in Bali</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                The January New Year slots are booking fast! Secure your spot for this rejuvenating escape to the Island of Gods.
+            </p>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl inline-block">
+                <!-- Price updated for Bali -->
+                <p class="text-3xl font-bold text-white mb-4">Starting Price: <span class="text-orange-400">₹65,000</span></p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="cta-gradient text-white px-10 py-4 rounded-full font-bold text-xl shadow-lg">
+                        <i class="fas fa-hand-point-right mr-2"></i> BOOK THIS PACKAGE
+                    </a>
+                    <a href="#" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg transition duration-200">
+                        <i class="fas fa-phone-alt mr-2"></i> CALL US
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 MoonRail. All rights reserved. | Professional Travel Curators.</p>
+        </div>
+    </footer>
+</body>
+</html>

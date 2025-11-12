@@ -1,0 +1,163 @@
+/* 🌅 PARALLAX 3 – Featured Cards Section */
+.parallax3 {
+  position: relative;
+  min-height: 120vh;
+  padding: 60px 24px;
+  background: linear-gradient(180deg, rgba(250,250,255,0.9), rgba(240,240,255,0.95));
+  overflow: hidden;
+  display: block;
+}
+
+/* Optional: light parallax or image background support */
+.parallax3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../img/parallax3-bg.jpg') center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+/* ensure all content above overlay */
+.parallax3 > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🌟 Grid Container */
+.fourcards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* ✨ Card Styling */
+.fourcard {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.fourcard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* image wrapper for badge overlay */
+.fourcard-image-wrapper {
+  position: relative;
+}
+
+.fourcard img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 🏷️ Badge */
+.fourcard-title-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: linear-gradient(90deg, #ff9f43, #a463ff);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+/* 📦 Card Content */
+.fourcard-content {
+  padding: 22px;
+  text-align: left;
+}
+
+.fourcard-content h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.3;
+}
+
+.fourcard-price {
+  font-size: 18px;
+  color: #a463ff;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.fourcard-rating {
+  color: #f39c12;
+  margin: 5px 0;
+}
+
+.fourcard-description {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0 18px;
+  line-height: 1.6;
+}
+
+/* 🎯 Icons Row */
+.fourcard-icons {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+  color: #bbb;
+}
+
+.fourcard-icons i {
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.fourcard-icons i:hover {
+  color: #a463ff;
+}
+
+/* 🔗 Read More Link */
+.read-more {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.read-more:hover {
+  color: #a463ff;
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .fourcards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .fourcard img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fourcards-container {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .fourcard img {
+    height: 200px;
+  }
+  .fourcard-content {
+    padding: 18px;
+  }
+}

@@ -1,0 +1,31 @@
+/* NormalSection.css */
+
+.content {
+  background-color: #19192c;
+  color: white;
+  /* Increased padding to 25px, maintaining height */
+  padding: 25px 0; 
+  margin: 0;
+  overflow: hidden; 
+}
+
+/* Style for the two separate marquee lines */
+.content marquee {
+  width: 100%; 
+  /* Ensures no space between the two marquee elements themselves */
+  margin-bottom: 0; 
+}
+
+.content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  /* FIX: Set margin to 0 to remove default browser spacing */
+  margin: 0; 
+  /* You may need to adjust the font color here if the white text is too bold */
+}
+
+.content p {
+  font-size: 1.2rem;
+  /* FIX: Set margin to 0 to remove default browser spacing */
+  margin: 0; 
+}

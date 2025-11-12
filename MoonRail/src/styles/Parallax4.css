@@ -1,0 +1,187 @@
+/* 🌇 PARALLAX 4 – Contact Section */
+.parallax4 {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* FIX: Set background to match Parallax3 light gradient */
+  background: linear-gradient(180deg, rgba(236, 236, 240, 0.9), rgba(243, 241, 241, 0.95)); 
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: subtle background image overlay */
+.parallax4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* FIX: Corrected path for contact-bg.jpg to point to src/assets */
+  background: url('../assets/contact-bg.jpg') center/cover no-repeat; 
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* keep content above overlay */
+.parallax4 > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 📞 Contact Layout */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* Left Image */
+.contact-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-left img {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  border-radius: 12px;
+  /* box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); */
+  object-fit: cover;
+}
+
+/* Right Form */
+.contact-right {
+  flex: 1;
+  max-width: 700px;
+  background: linear-gradient(135deg, #a463ff, #ff9f43);
+  padding: 60px 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  color: #000;
+}
+
+.contact-right h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 36px;
+  color: #000;
+}
+
+/* 🧾 Form Fields */
+.form-row {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.contact-right input,
+.contact-right textarea {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+  background: transparent;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-right input:focus,
+.contact-right textarea:focus {
+  border-color: #2d014f;
+}
+
+.contact-right input::placeholder,
+.contact-right textarea::placeholder {
+  color: #000;
+  opacity: 0.9;
+}
+
+/* Textarea */
+.contact-right textarea {
+  height: 140px;
+  resize: none;
+  margin-bottom: 28px;
+}
+
+/* ✉️ Submit Button */
+.contact-right button {
+  background: #2d014f;
+  color: #fff;
+  border: none;
+  padding: 15px 42px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.contact-right button:hover {
+  background: #3c0a69;
+  transform: translateY(-3px);
+}
+
+.contact-right button:active {
+  transform: translateY(0);
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 992px) {
+  .contact-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-left img {
+    max-width: 90%;
+    margin-bottom: 30px;
+  }
+
+  .contact-right {
+    width: 100%;
+    max-width: 600px;
+    padding: 50px 36px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .parallax4 {
+    padding: 40px 20px;
+  }
+
+  .contact-right {
+    padding: 40px 28px;
+  }
+
+  .contact-right h2 {
+    font-size: 26px;
+  }
+
+  .contact-right input,
+  .contact-right textarea {
+    font-size: 16px;
+  }
+
+  .contact-right button {
+    font-size: 16px;
+    padding: 13px 36px;
+  }
+}
