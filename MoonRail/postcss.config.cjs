@@ -1,9 +1,7 @@
-// C:\Users\hp\Online-Ticket-booking-app\MoonRail\postcss.config.cjs
-
+// postcss.config.cjs (or postcss.config.js)
 module.exports = {
   plugins: {
-    // This must match the package you just installed
-    '@tailwindcss/postcss': {}, 
-    'autoprefixer': {},
+    'tailwindcss': {},  // <-- MUST be 'tailwindcss'
+    'autoprefixer': {}, // <-- Ensures broad browser compatibility
   },
-}
+};

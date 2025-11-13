@@ -1,14 +1,12 @@
 /* ================================
-  parallax2.css
-  (Refined from best-packages.css)
+    Parallax2.css - Final Professional Code
 ================================ */
 
-/* Base section styling */
+/* --- Base Parallax and Card (No Change) --- */
 .parallax2 {
   --card-max: 960px;
   position: relative;
-  /* Use a reasonable height, ensuring it doesn't default to 100vh anywhere */
-  height: var(--parallax-h, 55vh); 
+  height: var(--parallax-h, 55vh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,11 +15,10 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* Keep background-attachment: scroll if you want content to move with the page */
-  background-attachment: scroll; 
+  background-attachment: scroll;
+  color: white;
 }
 
-/* Subtle overlay tint */
 .parallax2 .overlay {
   position: absolute;
   inset: 0;
@@ -29,45 +26,44 @@
   z-index: 1;
 }
 
-/* Ensure content stays above overlay */
 .parallax2 > * {
   position: relative;
   z-index: 2;
 }
 
-/* Card container */
-.parallax2-card {
+/* Main Card */
+.package-card {
   width: min(86%, var(--card-max));
   max-width: var(--card-max);
   background: #fff;
-  padding: 44px 48px;
+  padding: 30px 48px;
   border-radius: 8px;
-  box-shadow: 0 22px 48px rgba(10,20,40,0.10);
+  box-shadow: 0 10px 30px rgba(10,20,40,0.10);
   text-align: center;
   color: #111;
   margin: 0 auto;
-  /* If the card content causes the repetition, reduce this fixed height */
-  height: 600px; 
+  height: auto;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Descriptive text */
-.parallax2-card .lead {
-  color: #6b7280;
-  font-size: 1.02rem;
-  line-height: 1.8;
-  margin: 20px auto 26px;
-  max-width: 780px;
-}
+.package-card h2 { color: #111; margin-bottom: 10px; }
+.package-card .rating { margin-bottom: 15px; color: #ffc107; font-size: 1.2rem; }
+.package-card .lead { color: #6b7280; font-size: 1.02rem; line-height: 1.8; margin: 15px auto 20px; }
+.package-card img { max-width: 100%; height: auto; max-height: 300px; object-fit: cover; display: block; margin: 15px auto 15px auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 
-/* Button styling */
-.btn.book-now {
+/* Main Book Now Button */
+.package-card .btn.book-now {
   background: linear-gradient(90deg, #ff9f43 0%, #a463ff 100%);
   color: #fff;
   border: none;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-    display: inline-flex;
-    align-items: center;
-  padding: 20px 60px;
+  padding: 15px 40px;
   border-radius: 40px;
   font-weight: 700;
   letter-spacing: .6px;
@@ -75,96 +71,390 @@
   box-shadow: 0 10px 32px rgba(164,99,255,0.14);
   transition: all 0.3s ease;
 }
-.btn.book-now:hover {
+.package-card .btn.book-now:hover {
   transform: scale(1.05);
   box-shadow: 0 14px 40px rgba(164,99,255,0.2);
 }
 
-/* ===== Arrows ===== */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  border: 3px solid rgba(255,255,255,0.95);
-  background: rgba(255,255,255,0.06);
-  color: #fff;
-  z-index: 3;
-  cursor: pointer;
-  transition: transform .15s ease, background .12s ease, box-shadow .12s ease;
-  box-shadow: 0 8px 24px rgba(10,10,20,0.12);
-}
-.arrow span {
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 700;
-}
-
-/* Positioning */
+/* Arrows (unchanged) */
+.arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 64px; height: 64px; border-radius: 12px; display: grid; place-items: center; border: 3px solid rgba(255,255,255,0.95); background: rgba(255,255,255,0.06); color: #fff; z-index: 3; cursor: pointer; transition: transform .15s ease, background .12s ease, box-shadow .12s ease; }
+.arrow span { font-size: 28px; line-height: 1; font-weight: 700; }
 .arrow.left { left: 36px; }
 .arrow.right { right: 36px; }
 
-/* Hover feedback */
-.arrow:hover {
-  transform: translateY(-50%) scale(1.06);
-  background: rgba(255,255,255,0.12);
-  box-shadow: 0 16px 40px rgba(10,10,20,0.16);
-}
-.arrow:active {
-  transform: translateY(-50%) scale(0.98);
+/* --- MODAL STYLES (MULTI-STEP SUPPORT) --- */
+
+.modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
 
-/* Responsive adjustments */
+.modal-content {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 680px; 
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  animation: fadeIn 0.3s ease-out;
+  position: relative; 
+  
+  /* --- FIX: Height management and scrolling --- */
+  max-height: 90vh; /* Limits height to 90% of viewport */
+  overflow-y: auto; /* Enables scrolling when content is too tall */
+  display: flex; /* Ensures content respects max-height */
+  flex-direction: column;
+}
+
+/* Modal Heading (Clean, Bolder) */
+.modal-content .modal-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Dismiss Button (Top Right 'X') */
+.modal-content .modal-dismiss-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+}
+.modal-content .modal-dismiss-btn:hover {
+    color: #dc3545; /* Red on hover */
+}
+.modal-content .modal-dismiss-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* --- Step 1: Destination Details --- */
+.modal-content .modal-details {
+    width: 100%;
+    margin-bottom: 30px;
+}
+.modal-content .detail-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #555555;
+}
+.modal-content .detail-label {
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 5px;
+}
+.modal-content .rating-line {
+    display: block;
+    color: #555555;
+    font-weight: 400;
+}
+.modal-content .rating-line .stars {
+    color: #ffc107;
+    margin-right: 8px;
+}
+.modal-content .rating-line .rating-text {
+    font-weight: 500;
+}
+.convincer {
+    margin-top: 25px;
+    padding: 15px 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+.convincer p { margin: 0; }
+
+/* Step 1: Continue Button */
+.modal-content .btn.modal-continue-btn { 
+    background: #007bff; 
+    color: white;
+    border: none;
+    padding: 15px 45px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 25px; 
+    align-self: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 25px auto 0 auto;
+}
+.modal-content .btn.modal-continue-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+    background: #0069d9;
+}
+
+
+/* --- Step 2: Booking Form --- */
+
+.booking-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-description {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.booking-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.booking-fields label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+}
+
+.booking-fields input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.2s ease;
+}
+
+.booking-fields input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.payment-section {
+    border: 2px dashed #ffc107;
+    background-color: #fff8e1; 
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.payment-section h4 {
+    color: #d89e00;
+    margin-top: 0;
+    border-bottom: 1px solid #ffc107;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* FIX: Ensure payment inputs align correctly in the form grid */
+.payment-section label {
+    grid-column: span 1; /* Override any potential full-width settings */
+}
+
+.payment-placeholder {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+/* Form Action Buttons (Back and Pay) */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+    width: 100%;
+}
+
+.back-btn {
+    padding: 12px 20px;
+    background-color: #6c757d; 
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}
+
+.submit-payment-btn {
+    flex-grow: 1; 
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}
+
+.submit-payment-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.5);
+}
+.submit-payment-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* --- NEW STYLES FOR STEP 3: SUCCESS SCREEN --- */
+
+.payment-success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.success-heading {
+    color: #28a745; /* Green */
+    font-size: 2.5rem;
+    border: none;
+    margin-bottom: 0;
+}
+
+.success-icon {
+    font-size: 6rem;
+    color: #28a745;
+    border: 5px solid #28a745;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 30px 0;
+    font-weight: bold;
+}
+
+.success-message {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.success-details {
+    color: #6c757d;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.success-close-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-close-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
+}
+
+
+/* --- Error Message (at the end for easier location) --- */
+.payment-error-message {
+    color: #dc3545; /* Red color for error */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    grid-column: 1 / -1; /* Span across the entire form width */
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+
+/* --- Responsive adjustments (for screens <= 900px) --- */
 @media (max-width: 900px) {
-  .parallax2 {
-    /* If the page repeat is still happening, try changing height: auto; here */
-    height: auto; 
-    padding: 40px 12px;
-    background-attachment: scroll;
-  }
-  .parallax2-card {
-    padding: 28px 18px;
-    width: 94%;
-    max-width: 720px;
-  }
-  .parallax2-card .lead {
-    max-width: 100%;
-    font-size: .98rem;
-  }
-  .arrow {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    left: 12px;
-    right: 12px;
-    border-width: 2px;
-  }
+  /* ... (Existing media queries for parallax/card remain the same) ... */
+  .parallax2 { height: auto; padding: 40px 12px; background-attachment: scroll; }
+  .package-card { padding: 28px 18px; width: 94%; max-width: 720px; height: auto; min-height: 300px; }
+  .package-card img { max-height: 200px; }
+  .arrow { width: 48px; height: 48px; border-radius: 10px; left: 12px; right: 12px; border-width: 2px; }
   .arrow span { font-size: 20px; }
-}
-
-/* ==============================================
-  DELETED: Conflicting Checkbox/Radio Slider Logic 
-  (This was the likely cause of the page repetition)
-  ==============================================
-*/
-
-/* ===== Four-card grid section ===== */
-.fourcards-container {
-  /* NOTE: This section probably belongs in Parallax3.css */
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-@media (max-width: 900px) {
-  .fourcards-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .package-card .btn.book-now { padding: 12px 30px; }
+  
+  /* Modal changes for mobile */
+  .modal-content { 
+      padding: 25px; 
+      max-width: 95%; 
+      max-height: 95vh; /* Gives a little more room on mobile */
   }
+  .modal-content .modal-heading { font-size: 1.5rem; }
+  .convincer { padding: 15px; }
+  
+  /* Step 1 Button */
+  .modal-content .btn.modal-continue-btn { padding: 12px 30px; font-size: 1rem; }
+
+  /* Step 2 Form adjustments */
+  .booking-fields {
+      grid-template-columns: 1fr; /* Stack main fields */
+  }
+  .payment-placeholder {
+      grid-template-columns: 1fr; /* Stack card number, expiry, CVC */
+  }
+  
+  /* Remove unnecessary styles */
+  /* .payment-placeholder input {
+      grid-column: 1 / -1 !important; 
+  } */
+
+  .form-actions {
+      flex-direction: column; /* Stack action buttons */
+      gap: 10px;
+  }
+
+  /* Step 3 Success adjustments */
+  .success-heading { font-size: 2rem; }
+  .success-icon { font-size: 4rem; width: 80px; height: 80px; }
+  .success-message { font-size: 1.1rem; }
+  .success-details { font-size: 0.9rem; margin-bottom: 20px; }
+  .success-close-btn { padding: 12px 30px; font-size: 1rem; }
 }

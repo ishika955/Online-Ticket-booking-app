@@ -1,9 +1,9 @@
+// tailwind.config.cjs (or tailwind.config.js)
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // CRITICAL: This path tells Tailwind where to find your React components
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", 
+    "./src/**/*.{js,ts,jsx,tsx}", // <--- The crucial line
   ],
   theme: {
     extend: {},

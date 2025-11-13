@@ -25,6 +25,7 @@
 .parallax-content {
   position: relative;
   z-index: 1;
+  padding: 60px 20px;
 }
 
 .parallax-content h2 {
@@ -176,3 +177,7 @@
     width: 70%;
   }
 }
+
+
+
+
