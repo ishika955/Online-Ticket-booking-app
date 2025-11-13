@@ -125,20 +125,31 @@
   color: #a463ff;
 }
 
-/* 🔗 Read More Link */
+/* 🔗 Read More Link (BOOK NOW Button) */
 .read-more {
   text-decoration: none;
-  color: #000;
+  color: #fff; /* Changed text color to white for better contrast */
   font-weight: bold;
   font-size: 14px;
-  transition: color 0.2s;
+  transition: all 0.2s ease; /* Transition all properties */
+  display: block;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background-color: #6a0dad; /* Deep Purple */
+  margin-top: 15px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(106, 13, 173, 0.25); /* Deep Purple shadow */
 }
 
 .read-more:hover {
-  color: #a463ff;
+  background-color: #5a009a; /* Slightly darker purple on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(106, 13, 173, 0.4); /* Deeper shadow on hover */
 }
 
-/* 📱 Responsive */
+
+/* 📱 Responsive (Existing) */
 @media (max-width: 992px) {
   .fourcards-container {
     grid-template-columns: repeat(2, 1fr);
@@ -160,4 +171,347 @@
   .fourcard-content {
     padding: 18px;
   }
+}
+
+
+/* =======================================================
+   MODAL STYLES (REQUIRED FOR MULTI-STEP BOOKING)
+   ======================================================= */
+
+/* --- Backdrop and Main Container --- */
+.modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  color: #333333;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 680px; 
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  animation: fadeIn 0.3s ease-out;
+  position: relative; 
+  
+  /* HEIGHT FIX: Limits height and enables scrolling */
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal Heading (General) */
+.modal-content .modal-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Dismiss Button ('X') */
+.modal-content .modal-dismiss-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+}
+.modal-content .modal-dismiss-btn:hover {
+    color: #dc3545;
+}
+.modal-content .modal-dismiss-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* --- Step 1: Destination Details --- */
+.modal-content .modal-details {
+    width: 100%;
+    margin-bottom: 30px;
+}
+.modal-content .detail-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #555555;
+}
+.modal-content .detail-label {
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 5px;
+}
+.modal-content .rating-line .stars {
+    color: #ffc107;
+    margin-right: 8px;
+}
+.convincer {
+    margin-top: 25px;
+    padding: 15px 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+.convincer p { margin: 0; }
+
+/* Step 1: Continue Button */
+.modal-content .btn.modal-continue-btn { 
+    background: #007bff; /* Kept blue, but can be changed if desired for consistency */
+    color: white;
+    border: none;
+    padding: 15px 45px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 25px auto 0 auto;
+    width: 100%;
+    max-width: 400px;
+}
+.modal-content .btn.modal-continue-btn:hover {
+    transform: translateY(-2px);
+    background: #0069d9;
+}
+
+
+/* --- Step 2: Booking Form --- */
+
+.booking-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-description {
+    text-align: center;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.booking-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.booking-fields label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+}
+
+.booking-fields input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.booking-fields input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.payment-section {
+    border: 2px dashed #ffc107;
+    background-color: #fff8e1; 
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.payment-section h4 {
+    color: #d89e00;
+    margin-top: 0;
+    border-bottom: 1px solid #ffc107;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* Payment Error Message */
+.payment-error-message {
+    color: #dc3545; 
+    background-color: #f8d7da; 
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    grid-column: 1 / -1; 
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Form Action Buttons (Back and Pay) */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+    width: 100%;
+}
+
+.back-btn {
+    padding: 12px 20px;
+    background-color: #6c757d; 
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}
+
+.submit-payment-btn {
+    flex-grow: 1; 
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}
+
+.submit-payment-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+.submit-payment-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* --- Step 3: SUCCESS SCREEN --- */
+
+.payment-success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.success-heading {
+    color: #28a745;
+    font-size: 2.5rem;
+    border: none;
+    margin-bottom: 0;
+}
+
+.success-icon {
+    font-size: 6rem;
+    color: #28a745;
+    border: 5px solid #28a745;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 30px 0;
+    font-weight: bold;
+}
+
+.success-message {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.success-details {
+    color: #6c757d;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.success-close-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.success-close-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
+}
+
+
+/* --- Responsive Adjustments for Modal on Small Screens --- */
+@media (max-width: 600px) {
+    /* Existing card styles */
+    /* ... */
+
+    /* Modal changes for mobile */
+    .modal-content { 
+        padding: 25px 20px; /* More compact padding */
+        max-width: 95%; 
+        max-height: 95vh; /* Use most of the screen height */
+    }
+    .modal-content .modal-heading { font-size: 1.5rem; margin-bottom: 15px; }
+
+    /* Step 1 */
+    .modal-content .detail-item { margin-bottom: 15px; font-size: 1rem; }
+    .convincer { padding: 12px; margin-top: 15px; }
+    .modal-content .btn.modal-continue-btn { padding: 12px 30px; font-size: 1rem; }
+    
+    /* Step 2 Form */
+    .booking-fields {
+        grid-template-columns: 1fr; /* Stack main fields */
+        gap: 15px;
+    }
+    .form-actions {
+        flex-direction: column; /* Stack action buttons */
+        gap: 10px;
+        margin-top: 25px;
+    }
+    .back-btn, .submit-payment-btn { padding: 12px 15px; font-size: 1rem; }
+
+    /* Step 3 Success */
+    .success-icon { font-size: 5rem; width: 90px; height: 90px; }
+    .success-message { font-size: 1.1rem; }
+    .success-details { font-size: 0.9rem; margin-bottom: 25px; }
 }

@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <span className="nav-logo-text">MoonRail</span>
+        <span className="nav-logo-text" style={{ color: 'white' }}>MoonRail</span>
       </div>
       <ul>
         <li><Link to="/">Home</Link></li>
