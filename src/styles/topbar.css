@@ -1,0 +1,31 @@
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2a1b43;
+    padding: 8px 50px;
+    font-size: 14px;
+    color: white;
+} 
+
+.top-bar .social-icons i {
+    margin: 0 8px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.top-bar .social-icons i:hover {
+    color: #ff7b00;
+}
+
+.top-bar .auth-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.top-bar .auth-links a:hover {
+    color: #ff7b00;
+}
