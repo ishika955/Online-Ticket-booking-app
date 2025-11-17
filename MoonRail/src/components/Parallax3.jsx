@@ -12,6 +12,107 @@ import lakshdweepImg from "../assets/lakshdweep.jpg";
 import uttrakhandImg from "../assets/uttrakhand.jpg"; 
 import shimlaImg from "../assets/shimla.jpg";
 
+
+
+
+
+
+
+
+// ------------------------------------------
+
+// Replicate the data structure for easy lookup
+const packagesData = [
+    {
+      img: goaImg,
+      title: "Serene Beaches",
+      price: "₹5,500",
+      rating: 4, // Assumed 4 stars from your render logic
+      desc: "Relax in the vibrant vibes of Goa! Enjoy stunning beaches, luxury stays, and amazing nightlife — at best price.",
+      icons: ["fas fa-route", "fas fa-stopwatch", "fas fa-bicycle", "fas fa-ship"],
+    },
+    {
+      img: haridwarImg,
+      title: "HARIDWAR",
+      price: "₹3,200",
+      rating: 5, // Assumed 5 stars (religious significance often gets 5)
+      desc: "Experience the spiritual charm of Ganga Aarti, holy ghats, and peaceful temples in Haridwar.",
+      icons: ["fas fa-praying-hands", "fas fa-water", "fas fa-route", "fas fa-om"],
+    },
+    {
+      img: manaliImg,
+      title: "MANALI",
+      price: "₹6,000",
+      rating: 4, 
+      desc: "A paradise for nature lovers! Snowy mountains, river adventures, and cozy stays in Manali await you.",
+      icons: ["fas fa-snowflake", "fas fa-route", "fas fa-bicycle", "fas fa-mountain"],
+    },
+    {
+      img: agraImg,
+      title: "AGRA",
+      price: "₹4,800",
+      rating: 4, 
+      desc: "Discover the iconic Taj Mahal and Mughal heritage in the historic city of Agra.",
+      icons: ["fas fa-landmark", "fas fa-route", "fas fa-utensils", "fas fa-camera"],
+    },
+    {
+      img: jaipurImg,
+      title: "JAIPUR",
+      price: "₹5,200",
+      rating: 4, 
+      desc: "Explore the Pink City’s palaces, forts, and vibrant bazaars for a royal experience in Jaipur.",
+      icons: ["fas fa-crown", "fas fa-route", "fas fa-mountain", "fas fa-camera"],
+    },
+    {
+      img: lakshdweepImg,
+      title: "LAKSHADWEEP",
+      price: "₹7,500",
+      rating: 5, 
+      desc: "Crystal-clear waters, coral reefs, and serene beaches make Lakshadweep a tropical paradise.",
+      icons: ["fas fa-ship", "fas fa-water", "fas fa-swimmer", "fas fa-umbrella-beach"],
+    },
+
+
+    // --- New Uttarakhand Package ---
+    {
+        img: uttrakhandImg, // Assuming you import this image
+        title: "RISHIKESH, Uttarakhand",
+        price: "₹4,900",
+        rating: 5,
+        desc: "The 'Yoga Capital of the World' offers white-water rafting, bungee jumping on the foothills of the Himalayas.",
+        icons: ["fas fa-hands-wash", "fas fa-water", "fas fa-person-swimming", "fas fa-mountain"],
+    },
+
+    // --- New Shimla Package ---
+    {
+        img: shimlaImg, // Assuming you import this image
+        title: "SHIMLA (Himachal)",
+        price: "₹4,200",
+        rating: 4,
+        desc: "Visit the Queen of Hills! Explore the historic Mall Road, enjoy scenic toy train rides and snow-capped peaks.",
+        icons: ["fas fa-train", "fas fa-mountain", "fas fa-snowflake", "fas fa-route"],
+    },
+
+
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --- 1. CORE MODAL COMPONENTS ---
 // ------------------------------------
 
@@ -311,82 +412,7 @@ const BookingModal = ({ isOpen, onClose, destination, price, rating }) => {
 
 
 // --- 2. MAIN PAGE COMPONENT (Parallax3) ---
-// ------------------------------------------
 
-// Replicate the data structure for easy lookup
-const packagesData = [
-    {
-      img: goaImg,
-      title: "Serene Beaches",
-      price: "₹5,500",
-      rating: 4, // Assumed 4 stars from your render logic
-      desc: "Relax in the vibrant vibes of Goa! Enjoy stunning beaches, luxury stays, and amazing nightlife — at best price.",
-      icons: ["fas fa-route", "fas fa-stopwatch", "fas fa-bicycle", "fas fa-ship"],
-    },
-    {
-      img: haridwarImg,
-      title: "HARIDWAR",
-      price: "₹3,200",
-      rating: 5, // Assumed 5 stars (religious significance often gets 5)
-      desc: "Experience the spiritual charm of Ganga Aarti, holy ghats, and peaceful temples in Haridwar.",
-      icons: ["fas fa-praying-hands", "fas fa-water", "fas fa-route", "fas fa-om"],
-    },
-    {
-      img: manaliImg,
-      title: "MANALI",
-      price: "₹6,000",
-      rating: 4, 
-      desc: "A paradise for nature lovers! Snowy mountains, river adventures, and cozy stays in Manali await you.",
-      icons: ["fas fa-snowflake", "fas fa-route", "fas fa-bicycle", "fas fa-mountain"],
-    },
-    {
-      img: agraImg,
-      title: "AGRA",
-      price: "₹4,800",
-      rating: 4, 
-      desc: "Discover the iconic Taj Mahal and Mughal heritage in the historic city of Agra.",
-      icons: ["fas fa-landmark", "fas fa-route", "fas fa-utensils", "fas fa-camera"],
-    },
-    {
-      img: jaipurImg,
-      title: "JAIPUR",
-      price: "₹5,200",
-      rating: 4, 
-      desc: "Explore the Pink City’s palaces, forts, and vibrant bazaars for a royal experience in Jaipur.",
-      icons: ["fas fa-crown", "fas fa-route", "fas fa-mountain", "fas fa-camera"],
-    },
-    {
-      img: lakshdweepImg,
-      title: "LAKSHADWEEP",
-      price: "₹7,500",
-      rating: 5, 
-      desc: "Crystal-clear waters, coral reefs, and serene beaches make Lakshadweep a tropical paradise.",
-      icons: ["fas fa-ship", "fas fa-water", "fas fa-swimmer", "fas fa-umbrella-beach"],
-    },
-
-
-    // --- New Uttarakhand Package ---
-    {
-        img: uttrakhandImg, // Assuming you import this image
-        title: "RISHIKESH, Uttarakhand",
-        price: "₹4,900",
-        rating: 5,
-        desc: "The 'Yoga Capital of the World' offers white-water rafting, bungee jumping on the foothills of the Himalayas.",
-        icons: ["fas fa-hands-wash", "fas fa-water", "fas fa-person-swimming", "fas fa-mountain"],
-    },
-
-    // --- New Shimla Package ---
-    {
-        img: shimlaImg, // Assuming you import this image
-        title: "SHIMLA (Himachal)",
-        price: "₹4,200",
-        rating: 4,
-        desc: "Visit the Queen of Hills! Explore the historic Mall Road, enjoy scenic toy train rides and snow-capped peaks.",
-        icons: ["fas fa-train", "fas fa-mountain", "fas fa-snowflake", "fas fa-route"],
-    },
-
-
-];
 
 
 const Parallax3 = () => {
