@@ -6,7 +6,8 @@ import Greece from "./pages/greece";
 import Mauritius from "./pages/mauritius";
 import Scotland from "./pages/scotland";
 import Booking from "./pages/booking";
-import Offers from "./pages/Offers"; // ✅ ADD THIS
+import Offers from "./pages/Offers"; 
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
 
         {/* ✅ FINAL: Offers Page Route */}
         <Route path="/offers" element={<Offers />} />
+        <Route path="/about" element={<AboutUs />} /> {/* Add this route */}
+
       </Routes>
     </Router>
   );

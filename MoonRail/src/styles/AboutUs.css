@@ -1,0 +1,275 @@
+/* About Us Page Styles */
+.about-us-page {
+  background-color: #1a1a2e;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Hero Section */
+.about-hero-section {
+  background: linear-gradient(135deg, #6a44ad, #2e1a3c);
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.about-hero-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.about-hero-section p {
+  font-size: 1.125rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  color: #f0f0f0;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .about-hero-section h1 {
+    font-size: 3rem;
+  }
+  
+  .about-hero-section p {
+    font-size: 1.25rem;
+  }
+}
+
+/* Team Gallery */
+.team-gallery-section {
+  padding: 4rem 0;
+}
+
+.team-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  width: 250px;
+  height: 350px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: #19192c;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* .gallery-item.center {
+  height: 400px;
+  transform: translateY(-20px);
+  z-index: 10;
+} */
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.team-member-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Main Content */
+.about-main-content {
+  padding: 4rem 0;
+}
+
+.content-section {
+  display: grid;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .content-section {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+  }
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.section-subtitle {
+  color: #a0a0b0;
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.section-description {
+  color: #a0a0b0;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.section-content {
+  text-align: center;
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-item {
+  background-color: #19192c;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #2e2e42;
+  text-align: left;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.feature-item:hover {
+  border-color: #6a44ad;
+}
+
+.feature-item h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.feature-item p {
+  color: #a0a0b0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA Section */
+.about-cta-section {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #6a44ad, #2e1a3c);
+  text-align: center;
+}
+
+.about-cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.about-cta-section p {
+  font-size: 1.125rem;
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  color: #f0f0f0;
+  line-height: 1.6;
+}
+
+.cta-button {
+  background: linear-gradient(90deg, #ff7171, #c5a4f7);
+  border: none;
+  padding: 0.75rem 2rem;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 113, 113, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .team-gallery {
+    gap: 0.5rem;
+  }
+  
+  .gallery-item {
+    width: 45%;
+    height: 300px;
+  }
+  
+  /* .gallery-item.center {
+    height: 320px;
+    transform: translateY(-10px);
+  } */
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .about-cta-section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
+    width: 100%;
+    max-width: 280px;
+    height: 350px;
+  }
+  
+  /* .gallery-item.center {
+    height: 370px;
+    transform: translateY(-20px);
+    z-index:10;
+  } */
+  
+  .team-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+}
