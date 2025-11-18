@@ -8,6 +8,7 @@ import Scotland from "./pages/scotland";
 import Booking from "./pages/booking";
 import Offers from "./pages/Offers"; 
 import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         {/* ✅ FINAL: Offers Page Route */}
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<AboutUs />} /> {/* Add this route */}
+        <Route path="/contact" element={<Contact />} />
 
       </Routes>
     </Router>
