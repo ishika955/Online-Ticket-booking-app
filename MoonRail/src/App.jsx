@@ -10,6 +10,7 @@ import Offers from "./pages/Offers";
 import AboutUs from "./pages/AboutUs";
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Contact from './pages/Contact';
 
 
 function App() {
@@ -22,11 +23,12 @@ function App() {
         <Route path="/scotland" element={<Scotland />} />
         <Route path="/booking" element={<Booking />} />
 
-        {/* ✅ FINAL: Offers Page Route */}
         <Route path="/offers" element={<Offers />} />
-        <Route path="/about" element={<AboutUs />} /> {/* Add this route */}
+        <Route path="/about" element={<AboutUs />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/contact" element={<Contact />} />
+      
 
       </Routes>
     </Router>

@@ -13,9 +13,10 @@ function Navbar() {
         <li><Link to="/about">About us</Link></li>
         <li><Link to="/offers">Offers</Link></li>
         <li><Link to="/news">News</Link></li>
-        <li><Link to="/contacts">Contact</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+
       </ul>
-      {/* Search icon removed */}
+      
     </nav>
   )
 }
