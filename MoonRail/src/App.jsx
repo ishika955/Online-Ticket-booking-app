@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { AuthProvider } from './contexts/AuthContext';
 import Homes from "./pages/Homes";
 import Greece from "./pages/greece";
 import Mauritius from "./pages/mauritius";
@@ -8,6 +8,9 @@ import Scotland from "./pages/scotland";
 import Booking from "./pages/booking";
 import Offers from "./pages/Offers"; 
 import AboutUs from "./pages/AboutUs";
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
         {/* ✅ FINAL: Offers Page Route */}
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<AboutUs />} /> {/* Add this route */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
       </Routes>
     </Router>

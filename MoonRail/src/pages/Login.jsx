@@ -1,19 +1,39 @@
+
+// src/pages/Login.jsx
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/auth.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (login(email, password)) {
-            navigate('/');
+        
+        // Direct localStorage login (same as your original JS)
+        if (!email || !password) {
+            alert("Please fill in all the fields!");
+            return;
         }
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find((u) => u.email === email.toLowerCase());
+        
+        if (!user) {
+            alert("User not found! Please sign up.");
+            return;
+        }
+
+        if (user.password !== password) {
+            alert("Incorrect password! Try again.");
+            return;
+        }
+
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        alert("Login successful!");
+        navigate('/');
     };
 
     return (

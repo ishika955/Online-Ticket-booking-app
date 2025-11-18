@@ -1,6 +1,5 @@
-// pages/Signup.jsx
+// src/pages/Signup.jsx
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/auth.css';
 
@@ -9,14 +8,40 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const { signUp } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (signUp(username, email, password, confirmPassword)) {
-            navigate('/login');
+        
+        // Direct localStorage signup (same as your original JS)
+        if (!username || !password || !email) {
+            alert("Oops! Please fill all the fields!");
+            return;
         }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter valid email address.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match! Please re-enter");
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const userExist = users.some((user) => user.email === email.toLowerCase());
+
+        if (userExist) {
+            alert("Email already Exists. Please login!");
+            return;
+        }
+
+        users.push({ username, email: email.toLowerCase(), password });
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Signup successful!");
+        navigate('/login');
     };
 
     return (
