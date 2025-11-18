@@ -16,7 +16,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  color: white;
+  color: white !important;
 }
 
 .parallax2 .overlay {
@@ -35,7 +35,7 @@
 .package-card {
   width: min(86%, var(--card-max));
   max-width: var(--card-max);
-  background: #fff;
+  background: #fff !important;
   padding: 30px 48px;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(10,20,40,0.10);
